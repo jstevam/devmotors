@@ -1,11 +1,70 @@
-"use client"
+"use client";
 
-import styles from "./styles.submenu.module.scss"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import styles from "./styles.submenu.module.scss";
+import { X, Menu } from "lucide-react";
 
 export default function Submenu() {
+
+  const [isOPen, setIsOpen] = useState(false);
+
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        setIsOpen(false);
+      }
+
+    }
+    window.addEventListener("resize", handleResize)
+
+    return () => window.removeEventListener("resize", handleResize)
+
+  }, []);
+
+  function toggleMenu() {
+    setIsOpen(!isOPen);
+  };
+
   return (
+
     <section className={styles.submenu}>
-      submenu
-      </section>
+
+      <div className={styles.submenuIcon} onClick={toggleMenu}>
+        <Menu size={34} color="#121212" />
+        Menu
+      </div>
+
+      <ul className={`${styles.ul} ${isOPen ? styles.open : ""}`}>
+
+       {isOPen && (
+        <button onClick={toggleMenu} className={styles.closeButton}>
+          <X size={54} color="#121212"/>
+        </button>
+       )}
+      
+
+        <li>
+          <Link href="/post/pagina-1">
+            Pagina 1
+          </Link>
+        </li>
+        <li>
+          <Link href="/post/pagina-2">
+            Pagina 2
+          </Link>
+        </li>
+        <li>
+          <Link href="/post/pagina-3">
+            Pagina 3
+          </Link>
+        </li>
+
+      </ul>
+
+    </section>
   )
 }
+
+
