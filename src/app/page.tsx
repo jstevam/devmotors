@@ -14,11 +14,11 @@ export default async function Home() {
   const { object }: HomeProps = await getDataHome();
   const menu: MenuProps = await getSubMenu();
 
-  console.log(menu);
+  //console.log(menu);
 
   return (
     <main>
-      <Submenu />
+      {menu.objects.length > 0 && <Submenu menu={menu} />}
 
       <Hero
         heading={object.metadata.heading}

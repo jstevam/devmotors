@@ -4,11 +4,19 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "./styles.submenu.module.scss";
 import { X, Menu } from "lucide-react";
+import { MenuProps } from "@/utils/menu.types";
 
-export default function Submenu() {
+interface SubMenuProp {
+  menu: MenuProps
+};
+
+
+export default function Submenu({ menu }: SubMenuProp) {
 
   const [isOPen, setIsOpen] = useState(false);
 
+
+  console.log(menu)
 
   useEffect(() => {
     const handleResize = () => {
@@ -38,12 +46,12 @@ export default function Submenu() {
 
       <ul className={`${styles.ul} ${isOPen ? styles.open : ""}`}>
 
-       {isOPen && (
-        <button onClick={toggleMenu} className={styles.closeButton}>
-          <X size={54} color="#121212"/>
-        </button>
-       )}
-      
+        {isOPen && (
+          <button onClick={toggleMenu} className={styles.closeButton}>
+            <X size={54} color="#121212" />
+          </button>
+        )}
+
 
         <li>
           <Link href="/post/pagina-1">
