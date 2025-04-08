@@ -16,8 +16,6 @@ export default function Submenu({ menu }: SubMenuProp) {
   const [isOPen, setIsOpen] = useState(false);
 
 
-  console.log(menu)
-
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 768) {
@@ -53,21 +51,13 @@ export default function Submenu({ menu }: SubMenuProp) {
         )}
 
 
-        <li>
-          <Link href="/post/pagina-1">
-            Pagina 1
-          </Link>
-        </li>
-        <li>
-          <Link href="/post/pagina-2">
-            Pagina 2
-          </Link>
-        </li>
-        <li>
-          <Link href="/post/pagina-3">
-            Pagina 3
-          </Link>
-        </li>
+        {menu.objects.map(item => (
+          <li key={item.slug}>
+            <Link href={`/post/${item.slug}`}>
+              {item.title}
+            </Link>
+          </li>
+        ))}
 
       </ul>
 
