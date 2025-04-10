@@ -30,3 +30,30 @@ export async function getSubMenu() {
     throw new Error("Failed to fetch menu data");
   }
 }
+
+export async function getItemBySlug(itemSlug: string) {
+  const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}/objects`;
+
+  // Definindo o objeto de consulta pelo Slug
+  const queryParams = new URLSearchParams({
+    query: JSON.stringify({
+      slug: itemSlug,
+    }),
+    props: "slug,title,content,metadata",
+    read_key: process.env.READ_KEY as string,
+  });
+
+  const url = `${baseUrl}?${queryParams.toString()}`;
+
+  try {
+    const res = await fetch(url, { next: { revalidate: 120 } });
+
+    if (!res.ok) {
+      throw new Error("Failed get item by slug");
+    }
+
+    return res.json();
+  } catch (err) {
+    throw new Error("Failed get item by slug");
+  }
+}
