@@ -13,7 +13,6 @@ export interface ObjectPost {
       title: string;
       url: string;
     };
-
     description: {
       title: string;
       text: string;
