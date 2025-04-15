@@ -4,7 +4,7 @@ import Header from "@/components/header";
 
 
 export const metadata: Metadata = {
-  title: "Projeto Dev Motors",
+  title: "DevMotors - Sua Oficina especializada!",
   description: "Manutenção de Veiculos",
   keywords: ["oficina", "oficina carros", "mecânica", "veiculos", "manutenção"],
   openGraph: {
