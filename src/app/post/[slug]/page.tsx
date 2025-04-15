@@ -13,7 +13,7 @@ export default async function Page({ params: { slug } }: {
 }) {
 
     const { objects }: PostProps = await getItemBySlug(slug);
-    console.log(JSON.stringify(objects, null, 2));
+    // console.log(JSON.stringify(objects, null, 2));
 
     return (
         <>
