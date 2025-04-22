@@ -32,5 +32,5 @@ interface ServiceProps {
   imagem: {
     url: string;
   };
-  descripion: string;
+  description: string;
 }

@@ -29,7 +29,7 @@ export function Services({ object }: HomeProps) {
             <section className={styles.services}>
 
                 {object.metadata.services.map(service => (
-                    <article key={service.descripion} className={styles.service}>
+                    <article key={service.description} className={styles.service}>
 
                         <div className={styles.innerService}>
                             <Image
@@ -42,7 +42,7 @@ export function Services({ object }: HomeProps) {
                             />
                         </div>
 
-                        <p>{service.descripion}</p>
+                        <p>{service.description}</p>
 
                     </article>
                 ))}
