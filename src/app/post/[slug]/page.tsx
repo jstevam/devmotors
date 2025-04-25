@@ -8,17 +8,20 @@ import Image from 'next/image';
 import { Metadata } from "next";
 
 
-export async function generateMetadata({ params: { slug } }: {
-    params: { slug: string }
+export async function generateMetadata({ params }: {
+    params: Promise<{ slug: string }>
+
 }): Promise<Metadata> {
 
     try {
-        const { objects }: PostProps = await getItemBySlug(slug).catch(() => {
-            return {
-                title: "DevMotors - Sua Oficina especializada!",
-                description: "Manutenção de Veiculos",
-            }
-        });
+        const { slug } = await params;
+        const { objects }: PostProps = await getItemBySlug(slug)
+            .catch(() => {
+                return {
+                    title: "DevMotors - Sua Oficina especializada!",
+                    description: "Manutenção de Veiculos",
+                }
+            });
 
         return {
             title: `DevMotors - ${objects[0].title}`,
@@ -49,10 +52,11 @@ export async function generateMetadata({ params: { slug } }: {
 }
 
 
-export default async function Page({ params: { slug } }:
-    { params: { slug: string } }
+export default async function Page({ params }: {
+    params: Promise<{ slug: string }>
+}
 ) {
-
+    const { slug } = await params;
     const { objects }: PostProps = await getItemBySlug(slug);
     // console.log(JSON.stringify(objects, null, 2));
 
