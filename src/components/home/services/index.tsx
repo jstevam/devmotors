@@ -1,7 +1,9 @@
+"use client"
 import React from 'react'
 import styles from "./styles.services.module.scss"
 import { HomeProps } from './../../../utils/home.type';
 import Image from 'next/image';
+import SimpleParallax from 'simple-parallax-js';
 
 export function Services({ object }: HomeProps) {
     return (
@@ -13,15 +15,19 @@ export function Services({ object }: HomeProps) {
                 </article>
 
                 <div className={styles.bannerAbout}>
-                    <Image
-                        className={styles.imageAbout}
-                        src={object.metadata.about.banner.url}
-                        alt='Imagem ilustrativa sobre a empresa'
-                        quality={100}
-                        fill={true}
-                        sizes="(max-width: 480px) 100vw,(max-width: 1024px) 75vw, 60vw"
-                    />
+                    <SimpleParallax delay={1} transition="cubic-bezier(0,0,0,1)" >
+                        <Image
+                            className={styles.imageAbout}
+                            src={object.metadata.about.banner.url}
+                            alt='Imagem ilustrativa sobre a empresa'
+                            quality={100}
+                            // fill={true}
+                            //sizes="(max-width: 480px) 100vw,(max-width: 1024px) 75vw, 60vw"
+                            width={1024} height={1920}
+                        />
+                    </SimpleParallax>
                 </div>
+
             </section>
 
             <h2 className={styles.servicesTitle}>Conheça nossos serviços</h2>
